@@ -1,0 +1,10 @@
+{
+    "tabs": [
+        {
+            "tabName": "Custom tab name",
+            "commands" : [
+                "echo 'Hello world'"
+            ]
+        }
+    ]
+}
