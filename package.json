@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:waiter.helloWorld"
+		"onCommand:waiter.startEnvironment"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "waiter.helloWorld",
-				"title": "Hello World"
+				"command": "waiter.startEnvironment",
+				"title": "Start Environment"
 			}
 		]
 	},
