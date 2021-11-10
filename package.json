@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:waiter.startEnvironment"
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
