@@ -1,70 +1,38 @@
-# waiter README
+# Waiter extension
 
-This is the README for your extension "waiter". After writing up a brief description, we recommend including the following sections.
+Do you hate having to run all those commands every time when you open up a folder? Now you can set a JSON whit all the terminal tabs and commands that it should run.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+The gif can show you what I'm talking about, you just open the folder and everything is setup for your development session 
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![initializing a project](./readmeImages/initializing.gif)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+The Waiter needs a JSON file so that he knows what you want, but don't worry as soon as it runs he'll ask you to create it.
 
-## Extension Settings
+![how it asks to create](./readmeImages/askingToCreate.png)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+If you prefer to do things by hand you can create a file with the name ```waiter.config.json``` and add the base structure:
 
-For example:
+```json
+{
+    "tabs": [
+        {
+            "tabName": "Custom tab name",
+            "commands" : [
+                "echo 'Hello world'"
+            ]
+        }
+    ]
+}
+```
 
-This extension contributes the following settings:
+> A tabName isn't required but nice to have
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+<!-- # Contributing
 
-## Known Issues
+For more information on contributing see [Contributing.md]('https://github.com/biel-correa/waiter/blob/master/CONTRIBUTING.md')
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+> create contributing.md -->
