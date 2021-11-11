@@ -12,7 +12,7 @@ The gif can show you what I'm talking about, you just open the folder and everyt
 
 The Waiter needs a JSON file so that he knows what you want, but don't worry as soon as it runs he'll ask you to create it.
 
-![how it asks to create](https://github.com/biel-correa/waiter/blob/master/readmeImages/askingToCreate.png)
+![how it asks to create](./readmeImages/askingToCreate.png)
 
 If you prefer to do things by hand you can create a file with the name ```waiter.config.json``` and add the base structure:
 
