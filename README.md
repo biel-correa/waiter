@@ -6,7 +6,7 @@ Do you hate having to run all those commands every time when you open up a folde
 
 The gif can show you what I'm talking about, you just open the folder and everything is setup for your development session 
 
-> add the gif here
+![initializing a project](./readmeImages/initializing.gif)
 
 ## Requirements
 
