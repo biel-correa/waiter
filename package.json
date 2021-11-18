@@ -2,6 +2,7 @@
 	"name": "waiter",
 	"displayName": "Waiter",
 	"description": "",
+	"icon": "https://github.com/biel-correa/waiter/blob/master/img/logo.png",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.62.0"
