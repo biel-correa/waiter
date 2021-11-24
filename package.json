@@ -2,8 +2,9 @@
 	"name": "waiter",
 	"displayName": "Waiter",
 	"description": "",
-	"icon": "https://github.com/biel-correa/waiter/blob/master/img/logo.png",
-	"version": "0.0.1",
+	"icon": "img/logo.png",
+	"version": "1.0.0",
+	"publisher": "GabrielCorra",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -21,6 +22,10 @@
 				"title": "Start Environment"
 			}
 		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/biel-correa/waiter.git"
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
