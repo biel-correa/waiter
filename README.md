@@ -33,6 +33,6 @@ If you prefer to do things by hand you can create a file with the name ```waiter
 
 <!-- # Contributing
 
-For more information on contributing see [Contributing.md]('https://github.com/biel-correa/waiter/blob/master/CONTRIBUTING.md')
+For more information on contributing see Contributing.md
 
 > create contributing.md -->
