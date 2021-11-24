@@ -6,13 +6,13 @@ Do you hate having to run all those commands every time when you open up a folde
 
 The gif can show you what I'm talking about, you just open the folder and everything is setup for your development session 
 
-![initializing a project](./readmeImages/initializing.gif)
+![initializing](https://user-images.githubusercontent.com/56176344/143320917-12fe3516-36af-4ec5-a073-5c2dd9abdc46.gif)
 
 ## Requirements
 
 The Waiter needs a JSON file so that he knows what you want, but don't worry as soon as it runs he'll ask you to create it.
 
-![how it asks to create](./readmeImages/askingToCreate.png)
+![askingToCreate](https://user-images.githubusercontent.com/56176344/143320932-031c68c4-440d-4476-8fbc-d9a08b369614.png)
 
 If you prefer to do things by hand you can create a file with the name ```waiter.config.json``` and add the base structure:
 
