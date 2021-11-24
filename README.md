@@ -1,6 +1,6 @@
 # Waiter extension
 
-Do you hate having to run all those commands every time when you open up a folder? Now you can set a JSON whit all the terminal tabs and commands that it should run.
+Do you hate having to run all those commands every time when you open up a folder? Now you can set a JSON with all the terminal tabs and commands that it should run.
 
 ## Features
 
