@@ -1,10 +1,10 @@
 {
-    "tabs": [
-        {
-            "tabName": "Custom tab name",
-            "commands" : [
-                "echo 'Hello world'"
-            ]
-        }
-    ]
+  "tabs": [
+    {
+      "tabName": "Custom tab name",
+      "commands": [
+        "echo 'Hello World'"
+      ]
+    }
+  ]
 }

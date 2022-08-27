@@ -1,0 +1,3 @@
+interface ConfigFile {
+  tabs: Tab[];
+}
