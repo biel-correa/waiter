@@ -1,50 +1,52 @@
+import path = require('path');
 import * as vscode from 'vscode';
 
-interface ConfigFile {
-	tabs: Tab[]
-}
-
-interface Tab {
-	tabName: string
-	commands: string[]
-}
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('waiter.startEnvironment', () => {
-		if (vscode.workspace.rootPath !== undefined) {
-			//search for file
-			let configFilePath = vscode.workspace.rootPath + '\\waiter.config.json';
-			vscode.workspace.openTextDocument(configFilePath).then(doc => {
-				//load config
-				let config: ConfigFile = JSON.parse(doc.getText());
-				config.tabs.forEach((tab: Tab) => {
-					let terminal = vscode.window.createTerminal(tab.tabName);
-					tab.commands.forEach((command: string) => {
-						terminal.sendText(command);
-					});
-				});
-			}, async (error: Error) => {
-				//create file when it doesn't exist
-				let action = await vscode.window.showErrorMessage("Could not find waiter.config.json.", 'Create File');
-				if (action === 'Create File') {
-					var setting: vscode.Uri = vscode.Uri.parse("untitled:" + configFilePath);
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, 1, false).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), '{\n\t"tabs": [\n\t\t{\n\t\t\t"tabName": "Custom tab name",\n\t\t\t"commands" : [\n\t\t\t\t"echo \'Hello world\'"\n\t\t\t]\n\t\t}\n\t]\n}');
-							});
-						});
-					});
-				}
-			});
-		}
-	});
+  let disposable = vscode.commands.registerCommand('waiter.startEnvironment', () => {
+    if (vscode.workspace.rootPath === undefined) {
+      return;
+    }
+    let configFilePath = path.join(vscode.workspace.rootPath, 'waiter.config.json');
+    vscode.workspace.openTextDocument(configFilePath).then(
+      (doc) => {
+        let config: ConfigFile = JSON.parse(doc.getText());
+        config.tabs.forEach((tab: Tab) => {
+          let terminal = vscode.window.createTerminal(tab.tabName);
+          tab.commands.forEach((command: string) => {
+            terminal.sendText(command);
+          });
+        });
+      },
+      async (error: Error) => {
+        let action = await vscode.window.showErrorMessage('Could not find waiter.config.json.', 'Create File');
+        if (action === 'Create File') {
+          const wsedit = new vscode.WorkspaceEdit();
+          const filePath = vscode.Uri.file(configFilePath);
+          wsedit.createFile(filePath);
+          await vscode.workspace.applyEdit(wsedit);
+          const configFileEditor = await vscode.window.showTextDocument(filePath);
+          configFileEditor
+            .edit((editBuilder) => {
+              const fileText = {
+                tabs: [
+                  {
+                    tabName: 'Custom tab name',
+                    commands: ["echo 'Hello World'"]
+                  }
+                ]
+              };
+              editBuilder.insert(new vscode.Position(0, 0), JSON.stringify(fileText, null, 2));
+            })
+            .then(() => {
+              vscode.window.showInformationMessage('waiter.config.json created.');
+            });
+        }
+      }
+    );
+  });
 
-	context.subscriptions.push(disposable);
-	vscode.commands.executeCommand('waiter.startEnvironment');
+  context.subscriptions.push(disposable);
+  vscode.commands.executeCommand('waiter.startEnvironment');
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
