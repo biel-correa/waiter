@@ -29,3 +29,22 @@ export function dontAskProject(context: vscode.ExtensionContext, path: string) {
   currentDirectories.push(path);
   store.update("ignoreProjects", currentDirectories);
 }
+
+export function deleteIgnoredPaths(context: vscode.ExtensionContext) {
+  const store = context.globalState;
+  let paths: string[] = store.get("ignoreProjects") || [];
+  if (paths.length === 0) {
+    vscode.window.showInformationMessage("You haven't ignored any project yet.");
+    return;
+  }
+  vscode.window.showQuickPick(paths, { placeHolder: "Select a project path" }).then((path) => {
+    if (!path) {
+      vscode.window.showInformationMessage("Didn't choose any project path.");
+      return;
+    }
+    paths.splice(paths.indexOf(path), 1);
+    store.update("ignoreProjects", paths);
+    vscode.window.showInformationMessage("Project path deleted.");
+  });
+  return;
+}

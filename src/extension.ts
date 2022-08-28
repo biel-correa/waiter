@@ -1,8 +1,9 @@
 import path = require("path");
 import * as vscode from "vscode";
-import { createFile, dontAskProject } from "./actions";
+import { createFile, deleteIgnoredPaths, dontAskProject } from "./actions";
 
 export function activate(context: vscode.ExtensionContext) {
+  generateCommands(context);
   let disposable = vscode.commands.registerCommand("waiter.startEnvironment", () => {
     const projectPath = vscode.workspace.rootPath;
     if (projectPath === undefined || shouldIgnoreProject(context, projectPath)) {
@@ -45,6 +46,10 @@ function shouldIgnoreProject(context: vscode.ExtensionContext, projectPath: stri
   const store = context.globalState;
   const ignoreProjects: string[] = store.get("ignoreProjects") || [];
   return ignoreProjects.includes(projectPath);
+}
+
+function generateCommands(context: vscode.ExtensionContext) {
+  vscode.commands.registerCommand("waiter.deleteIgnoredPaths", () => deleteIgnoredPaths(context));
 }
 
 export function deactivate() {}
