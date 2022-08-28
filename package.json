@@ -3,7 +3,7 @@
 	"displayName": "Waiter",
 	"description": "",
 	"icon": "img/logo.png",
-	"version": "1.0.2",
+	"version": "1.2.2",
 	"publisher": "GabrielCorra",
 	"engines": {
 		"vscode": "^1.62.0"
@@ -19,7 +19,11 @@
 		"commands": [
 			{
 				"command": "waiter.startEnvironment",
-				"title": "Start Environment"
+				"title": "Waiter: Start Environment"
+			},
+			{
+				"command": "waiter.deleteIgnoredPaths",
+				"title": "Waiter: Delete Ignored Paths"
 			}
 		]
 	},
