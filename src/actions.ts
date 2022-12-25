@@ -1,4 +1,36 @@
 import * as vscode from "vscode";
+import path = require("path");
+
+export function startEnvironment(context: vscode.ExtensionContext) {
+  const projectPath = vscode.workspace.rootPath;
+  if (projectPath === undefined || shouldIgnoreProject(context, projectPath)) {
+    return;
+  }
+  const configFilePath = path.join(projectPath, "waiter.config.json");
+  vscode.workspace.openTextDocument(configFilePath).then(
+    (doc) => {
+      let config: ConfigFile = JSON.parse(doc.getText());
+      config.tabs.forEach((tab: Tab) => {
+        let terminal = vscode.window.createTerminal(tab.tabName);
+        tab.commands.forEach((command: string) => {
+          terminal.sendText(command);
+        });
+      });
+    },
+    async () => {
+      const itens: string[] = ["Create File", "Don't ask for this project"];
+      const action = await vscode.window.showErrorMessage("Config file not found", ...itens);
+      switch (action) {
+        case "Create File":
+          createFile(configFilePath);
+          break;
+        case "Don't ask for this project":
+          dontAskProject(context, projectPath);
+          break;
+      }
+    }
+  );
+}
 
 export async function createFile(configFilePath: string) {
   const wsedit = new vscode.WorkspaceEdit();
@@ -47,4 +79,13 @@ export function deleteIgnoredPaths(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage("Project path deleted.");
   });
   return;
+}
+
+function shouldIgnoreProject(context: vscode.ExtensionContext, projectPath: string): boolean {
+  if (projectPath === undefined) {
+    return true;
+  }
+  const store = context.globalState;
+  const ignoreProjects: string[] = store.get("ignoreProjects") || [];
+  return ignoreProjects.includes(projectPath);
 }
