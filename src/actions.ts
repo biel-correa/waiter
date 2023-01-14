@@ -11,7 +11,12 @@ export function startEnvironment(context: vscode.ExtensionContext) {
     (doc) => {
       let config: ConfigFile = JSON.parse(doc.getText());
       config.tabs.forEach((tab: Tab) => {
-        let terminal = vscode.window.createTerminal(tab.tabName);
+        let terminal = vscode.window.terminals.filter((terminal) => terminal.name === tab.tabName)[0];
+
+        if (!terminal) {
+          terminal = vscode.window.createTerminal(tab.tabName);
+        }
+
         tab.commands.forEach((command: string) => {
           terminal.sendText(command);
         });
